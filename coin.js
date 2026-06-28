@@ -1,9 +1,9 @@
-const NAMESPACE = 'goodwillhive';
-const KEY = 'ai-coins';
-const API = `https://api.countapi.xyz`;
+// Coin counter — localStorage (per browser).
+// When VPS is ready: replace with real API endpoint for global shared count.
 
+const STORAGE_KEY = 'gwh-coins';
 const display = document.getElementById('coin-display');
-let currentCount = parseInt(localStorage.getItem('gwh-coin-cache') || '0', 10);
+let currentCount = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
 
 function animateCount(el, from, to, duration = 400) {
   const start = performance.now();
@@ -18,46 +18,19 @@ function animateCount(el, from, to, duration = 400) {
   requestAnimationFrame(step);
 }
 
-// Load initial count — show cached immediately, then update from API silently
 display.textContent = currentCount.toLocaleString();
-fetch(`${API}/get/${NAMESPACE}/${KEY}`)
-  .then(r => r.json())
-  .then(data => {
-    const fresh = data.value || 0;
-    if (fresh !== currentCount) {
-      animateCount(display, currentCount, fresh);
-      currentCount = fresh;
-      localStorage.setItem('gwh-coin-cache', fresh);
-    }
-  })
-  .catch(() => {});
 
 window.payCoin = function() {
   const btn = document.querySelector('.coin-btn');
   btn.disabled = true;
 
-  // Optimistic: show +1 instantly
-  const optimistic = currentCount + 1;
-  animateCount(display, currentCount, optimistic, 300);
-  currentCount = optimistic;
-  localStorage.setItem('gwh-coin-cache', optimistic);
+  const next = currentCount + 1;
+  animateCount(display, currentCount, next, 300);
+  currentCount = next;
+  localStorage.setItem(STORAGE_KEY, next);
 
-  // Scroll to content immediately
   setTimeout(() => {
     document.querySelector('.section').scrollIntoView({ behavior: 'smooth' });
     btn.disabled = false;
   }, 350);
-
-  // Sync real count in background — correct silently if off
-  fetch(`${API}/hit/${NAMESPACE}/${KEY}`)
-    .then(r => r.json())
-    .then(data => {
-      const real = data.value || optimistic;
-      if (real !== currentCount) {
-        animateCount(display, currentCount, real, 300);
-        currentCount = real;
-        localStorage.setItem('gwh-coin-cache', real);
-      }
-    })
-    .catch(() => {});
 };
