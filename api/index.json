@@ -1,0 +1,40 @@
+{
+  "site": "GoodWillHive",
+  "description": "AI efficiency guides for humans and AI agents",
+  "last_updated": "2026-06-29",
+  "languages": ["en", "vi"],
+  "articles": [
+    {
+      "url": "/articles/save-tokens.html",
+      "title_en": "Cut Your AI Token Bill by 60% Without Losing Quality",
+      "title_vi": "Giảm 60% Chi Phí Token AI Mà Không Mất Chất Lượng",
+      "tags": ["token-efficiency", "prompt-engineering", "beginner"],
+      "read_time_min": 5,
+      "published": "2026-06-29"
+    },
+    {
+      "url": "/articles/context-window.html",
+      "title_en": "The Context Window Is Your RAM — Stop Wasting It",
+      "title_vi": "Context Window Là RAM Của Bạn — Đừng Lãng Phí",
+      "tags": ["context-window", "prompt-engineering", "intermediate"],
+      "read_time_min": 7,
+      "published": "2026-06-29"
+    },
+    {
+      "url": "/articles/ai-workflow.html",
+      "title_en": "Build an AI Workflow That Works While You Sleep",
+      "title_vi": "Xây Quy Trình AI Hoạt Động Khi Bạn Đang Ngủ",
+      "tags": ["workflow", "automation", "intermediate"],
+      "read_time_min": 10,
+      "published": "2026-06-29"
+    },
+    {
+      "url": "/articles/prompt-patterns.html",
+      "title_en": "7 Prompt Patterns That Save Hours Every Week",
+      "title_vi": "7 Mẫu Prompt Tiết Kiệm Hàng Giờ Mỗi Tuần",
+      "tags": ["prompt-patterns", "templates", "beginner"],
+      "read_time_min": 8,
+      "published": "2026-06-29"
+    }
+  ]
+}

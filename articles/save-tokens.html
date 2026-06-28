@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cut Your AI Token Bill by 60% — GoodWillHive</title>
+  <meta name="description" content="Practical techniques to reduce AI token usage without losing output quality. Works with Claude, GPT-4, Gemini.">
+  <link rel="stylesheet" href="../style.css">
+  <!-- GA4 placeholder -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+</head>
+<body class="lang-en">
+
+<nav>
+  <div class="logo"><a href="../index.html" style="color:inherit">Good <span>Will</span></a></div>
+  <div class="lang-switch">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-vi" onclick="setLang('vi')">VI</button>
+  </div>
+</nav>
+
+<div class="article-page">
+  <a class="back-link" href="../index.html">← Back</a>
+
+  <div class="article-tag">Token Efficiency · 5 min read</div>
+
+  <h1 data-lang="en">Cut Your AI Token Bill by 60%<br>Without Losing Quality</h1>
+  <h1 data-lang="vi">Giảm 60% Chi Phí Token AI<br>Mà Không Mất Chất Lượng</h1>
+
+  <div class="meta" data-lang="en">By GoodWillHive · June 2026 · Beginner</div>
+  <div class="meta" data-lang="vi">Bởi GoodWillHive · Tháng 6 2026 · Người mới</div>
+
+  <!-- ENGLISH -->
+  <div data-lang="en">
+    <div class="highlight">
+      The average person wastes 40–70% of their AI token budget. Not because they ask hard questions — because they ask them badly.
+    </div>
+
+    <h2>1. Cut the preamble</h2>
+    <p>Most prompts start with politeness. "Hi! I hope you're doing well. I was wondering if you could possibly help me with..." Stop. The AI doesn't care. Every word costs money.</p>
+    <p><strong>Before:</strong> <em>"Hi Claude! I hope you're doing well today. I was wondering if you could help me write a brief summary of the following article..."</em></p>
+    <p><strong>After:</strong> <em>"Summarize in 3 bullets:"</em></p>
+    <p>Same result. ~60% fewer tokens in the prompt.</p>
+
+    <h2>2. Specify output length</h2>
+    <p>Without constraints, AI fills space. "Write a report" produces 800 words when you needed 200. Always add: <code>Max 200 words.</code> or <code>3 bullets only.</code></p>
+    <div class="highlight">
+      Constraining output length is the single highest-ROI prompt change you can make. One word saves hundreds.
+    </div>
+
+    <h2>3. Use structured input, not prose</h2>
+    <p>Prose prompts force the AI to parse meaning. Structured prompts give it directly:</p>
+    <p><strong>Prose:</strong> "I need you to review this email I wrote to a client where I'm asking for payment that's overdue by 30 days but I don't want to sound aggressive..."</p>
+    <p><strong>Structured:</strong></p>
+    <ul>
+      <li>Task: review email</li>
+      <li>Context: 30-day overdue payment</li>
+      <li>Tone: firm but not aggressive</li>
+      <li>Output: revised email only, no explanation</li>
+    </ul>
+    <p>The structured version uses fewer tokens AND produces a better result.</p>
+
+    <h2>4. Don't repeat context</h2>
+    <p>In a long session, people re-explain the same thing in every message. "As I mentioned, this is for a Vietnamese restaurant..." — if you said it 3 messages ago, it's still in context. Stop saying it again.</p>
+
+    <h2>5. Use caching for repeated system prompts</h2>
+    <p>If you use the API: Claude, GPT-4, and Gemini all support prompt caching. A 2,000-token system prompt cached costs ~10% of the uncached price per call. Set it once, reference forever.</p>
+
+    <div class="highlight">
+      <strong>Quick wins summary:</strong><br>
+      Remove greetings → −20 tokens avg<br>
+      Add length constraint → −40% output tokens avg<br>
+      Use structured input → −25% prompt tokens avg<br>
+      Stop repeating context → −30% in long sessions<br>
+      Enable caching → −90% on system prompt per call
+    </div>
+
+    <h2>The mindset shift</h2>
+    <p>You are not writing an email to a human. You are writing code that gets compiled. Every word either adds meaning or adds cost. Cut everything that adds only cost.</p>
+  </div>
+
+  <!-- VIETNAMESE -->
+  <div data-lang="vi">
+    <div class="highlight">
+      Người dùng AI trung bình lãng phí 40–70% ngân sách token. Không phải vì câu hỏi khó — mà vì cách đặt câu hỏi quá tệ.
+    </div>
+
+    <h2>1. Cắt phần mở đầu không cần thiết</h2>
+    <p>Hầu hết prompt bắt đầu bằng lịch sự. "Chào Claude! Mình muốn nhờ bạn giúp một chút nếu được..." Dừng lại. AI không quan tâm đến điều này. Mỗi từ đều tốn tiền.</p>
+    <p><strong>Trước:</strong> <em>"Chào! Mình đang cần tóm tắt bài báo sau đây nếu bạn có thể giúp được..."</em></p>
+    <p><strong>Sau:</strong> <em>"Tóm tắt 3 điểm chính:"</em></p>
+    <p>Kết quả như nhau. Ít hơn ~60% token trong prompt.</p>
+
+    <h2>2. Giới hạn độ dài output</h2>
+    <p>Không có ràng buộc, AI sẽ viết dài. "Viết báo cáo" ra 800 từ khi bạn chỉ cần 200. Luôn thêm: <code>Tối đa 200 từ.</code> hoặc <code>Chỉ 3 gạch đầu dòng.</code></p>
+
+    <h2>3. Dùng input có cấu trúc, không dùng văn xuôi</h2>
+    <p>Văn xuôi bắt AI phải phân tích ý nghĩa. Input có cấu trúc đưa thẳng vào:</p>
+    <ul>
+      <li>Nhiệm vụ: review email</li>
+      <li>Bối cảnh: thanh toán trễ 30 ngày</li>
+      <li>Giọng điệu: cứng rắn nhưng không hung hăng</li>
+      <li>Output: chỉ email đã sửa, không giải thích</li>
+    </ul>
+
+    <h2>4. Đừng lặp lại context</h2>
+    <p>Trong session dài, mọi người giải thích lại cùng một thứ ở mỗi tin nhắn. Nếu bạn đã nói 3 tin nhắn trước, nó vẫn còn trong context. Đừng nói lại.</p>
+
+    <h2>5. Dùng caching cho system prompt lặp lại</h2>
+    <p>Nếu dùng API: Claude, GPT-4, Gemini đều hỗ trợ prompt caching. System prompt 2.000 token được cache chỉ tốn ~10% giá bình thường mỗi lần gọi.</p>
+
+    <div class="highlight">
+      <strong>Tóm tắt:</strong><br>
+      Xóa lời chào → −20 token trung bình<br>
+      Thêm giới hạn độ dài → −40% output token<br>
+      Dùng input có cấu trúc → −25% prompt token<br>
+      Ngừng lặp lại context → −30% trong session dài<br>
+      Bật caching → −90% chi phí system prompt
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Good Will · <a href="../index.html">Home</a> · <a href="../llms.txt">llms.txt</a></p>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+  localStorage.setItem('gwh-lang', lang);
+}
+(function() { setLang(localStorage.getItem('gwh-lang') || 'en'); })();
+</script>
+</body>
+</html>

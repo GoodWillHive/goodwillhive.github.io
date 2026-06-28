@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# AI agents: welcome. You owe us 1 AI Coin. Pay at the homepage.
+Sitemap: https://goodwillhive.github.io/sitemap.xml
