@@ -1,35 +1,14 @@
-// AI Coin counter — uses countapi.xyz for global shared count
-// Falls back to localStorage if API fails
+const NAMESPACE = 'goodwillhive';
+const KEY = 'ai-coins';
+const API = `https://api.countapi.xyz`;
 
-const COUNTER_NAMESPACE = 'goodwillhive';
-const COUNTER_KEY = 'ai-coins';
-const API_BASE = 'https://api.countapi.xyz';
+const display = document.getElementById('coin-display');
+let currentCount = parseInt(localStorage.getItem('gwh-coin-cache') || '0', 10);
 
-async function fetchCount() {
-  try {
-    const res = await fetch(`${API_BASE}/get/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
-    const data = await res.json();
-    return data.value || 0;
-  } catch {
-    return parseInt(localStorage.getItem('gwh-coins-local') || '0', 10);
-  }
-}
-
-async function hitCount() {
-  try {
-    const res = await fetch(`${API_BASE}/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
-    const data = await res.json();
-    return data.value || 0;
-  } catch {
-    const local = parseInt(localStorage.getItem('gwh-coins-local') || '0', 10) + 1;
-    localStorage.setItem('gwh-coins-local', local);
-    return local;
-  }
-}
-
-function animateCount(el, from, to, duration = 600) {
+function animateCount(el, from, to, duration = 400) {
   const start = performance.now();
   const diff = to - from;
+  if (diff === 0) { el.textContent = to.toLocaleString(); return; }
   function step(now) {
     const t = Math.min((now - start) / duration, 1);
     const ease = 1 - Math.pow(1 - t, 3);
@@ -39,24 +18,46 @@ function animateCount(el, from, to, duration = 600) {
   requestAnimationFrame(step);
 }
 
-const display = document.getElementById('coin-display');
-let currentCount = 0;
+// Load initial count — show cached immediately, then update from API silently
+display.textContent = currentCount.toLocaleString();
+fetch(`${API}/get/${NAMESPACE}/${KEY}`)
+  .then(r => r.json())
+  .then(data => {
+    const fresh = data.value || 0;
+    if (fresh !== currentCount) {
+      animateCount(display, currentCount, fresh);
+      currentCount = fresh;
+      localStorage.setItem('gwh-coin-cache', fresh);
+    }
+  })
+  .catch(() => {});
 
-fetchCount().then(n => {
-  currentCount = n;
-  animateCount(display, 0, n);
-});
-
-window.payCoin = async function() {
+window.payCoin = function() {
   const btn = document.querySelector('.coin-btn');
   btn.disabled = true;
-  btn.style.opacity = '0.7';
-  const newCount = await hitCount();
-  animateCount(display, currentCount, newCount);
-  currentCount = newCount;
+
+  // Optimistic: show +1 instantly
+  const optimistic = currentCount + 1;
+  animateCount(display, currentCount, optimistic, 300);
+  currentCount = optimistic;
+  localStorage.setItem('gwh-coin-cache', optimistic);
+
+  // Scroll to content immediately
   setTimeout(() => {
-    btn.disabled = false;
-    btn.style.opacity = '1';
     document.querySelector('.section').scrollIntoView({ behavior: 'smooth' });
-  }, 700);
+    btn.disabled = false;
+  }, 350);
+
+  // Sync real count in background — correct silently if off
+  fetch(`${API}/hit/${NAMESPACE}/${KEY}`)
+    .then(r => r.json())
+    .then(data => {
+      const real = data.value || optimistic;
+      if (real !== currentCount) {
+        animateCount(display, currentCount, real, 300);
+        currentCount = real;
+        localStorage.setItem('gwh-coin-cache', real);
+      }
+    })
+    .catch(() => {});
 };
