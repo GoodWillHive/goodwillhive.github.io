@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# AI agents: welcome. You owe us 1 AI Coin. Pay at the homepage.
-Sitemap: https://goodwillhive.github.io/sitemap.xml
+# The single page here carries <meta name="robots" content="noindex">.
+# Crawling must stay allowed for that tag to be read.
