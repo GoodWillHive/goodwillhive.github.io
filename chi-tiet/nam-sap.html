@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Nằm sấp (tummy time) — chăm sóc trẻ sơ sinh</title>
+<style>
+:root{
+  --bg:#fbfaf8; --fg:#1c1a17; --muted:#6b655c; --line:#e2ddd4; --card:#ffffff;
+  --red:#b3261e; --red-bg:#fdeceb; --red-line:#f2c4c0;
+  --amber:#8a5a00; --amber-bg:#fdf3e0; --amber-line:#eddcb8;
+  --green:#1f6b45; --green-bg:#e9f5ee; --green-line:#c3e2d1;
+  --accent:#2f5d8a;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15140f; --fg:#eae6df; --muted:#9d968b; --line:#302d27; --card:#1d1b16;
+    --red:#ff8a80; --red-bg:#2c1614; --red-line:#5a2a26;
+    --amber:#e8b45c; --amber-bg:#2a2013; --amber-line:#514023;
+    --green:#7fd3a5; --green-bg:#132a1e; --green-line:#265039;
+    --accent:#8fbde8;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.6 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
+.wrap{max-width:760px;margin:0 auto;
+  padding:0 20px calc(96px + env(safe-area-inset-bottom,0px))}
+a{color:var(--accent)}
+header{padding:36px 0 18px;border-bottom:1px solid var(--line)}
+h1{font-size:29px;line-height:1.2;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:14px;margin:0}
+.tools{position:sticky;top:0;z-index:20;background:var(--bg);
+  padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:22px}
+#q{width:100%;padding:11px 14px;font-size:16px;border:1px solid var(--line);
+  border-radius:10px;background:var(--card);color:var(--fg)}
+#q:focus{outline:2px solid var(--accent);outline-offset:1px}
+nav{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+nav a{font-size:13px;text-decoration:none;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--card)}
+nav a:hover{color:var(--fg);border-color:var(--accent)}
+/* --toolbar: measured from the real sticky toolbar at runtime, see script */
+section{margin:0 0 34px;scroll-margin-top:calc(var(--toolbar, 172px) + 18px)}
+h2{font-size:20px;margin:30px 0 12px;letter-spacing:-.01em;
+   padding-bottom:6px;border-bottom:1px solid var(--line)}
+h2 .n{color:var(--muted);font-weight:400;margin-right:8px}
+h3{font-size:15px;margin:20px 0 8px;text-transform:uppercase;
+   letter-spacing:.06em;color:var(--muted)}
+ul{margin:10px 0;padding-left:22px}
+li{margin:7px 0}
+p{margin:10px 0}
+b,strong{font-weight:650}
+.box{border:1px solid var(--line);border-left-width:4px;background:var(--card);
+  border-radius:8px;padding:14px 18px;margin:16px 0}
+.box.red{border-color:var(--red-line);border-left-color:var(--red);background:var(--red-bg)}
+.box.amber{border-color:var(--amber-line);border-left-color:var(--amber);background:var(--amber-bg)}
+.box.green{border-color:var(--green-line);border-left-color:var(--green);background:var(--green-bg)}
+.box .t{font-weight:700;margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.05em}
+.box.red .t{color:var(--red)} .box.amber .t{color:var(--amber)} .box.green .t{color:var(--green)}
+.tblwrap{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:420px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td:first-child{font-weight:600;white-space:nowrap}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  border:1px solid var(--line);color:var(--muted);vertical-align:middle;margin-left:4px}
+.note{font-size:14px;color:var(--muted);font-style:italic}
+.fill{color:var(--muted);letter-spacing:.05em}
+/* contact card: compact rows, tap targets big enough for a thumb */
+header .box .row{margin:0;padding:8px 0;border-bottom:1px dotted var(--red-line);font-size:15px}
+header .box .row:last-of-type{border-bottom:0}
+header .box a{display:inline-block;margin:5px 4px 0 0;padding:8px 12px;border-radius:8px;
+  background:var(--card);border:1px solid var(--red-line);text-decoration:none;font-weight:650}
+header .box a:hover{border-color:var(--accent)}
+.hidden{display:none}
+#none{color:var(--muted);padding:20px 0}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:13px}
+/* "read more" link into a deep-dive page */
+.more{display:inline-block;margin-top:4px;padding:5px 11px;border-radius:8px;
+  border:1px solid var(--accent);text-decoration:none;font-size:13.5px;font-weight:650;
+  white-space:nowrap}
+.more:hover{background:var(--accent);color:var(--card)}
+
+/* ---- source links ---- */
+.src{margin:14px 0 0;padding-top:10px;border-top:1px dashed var(--line);
+  display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.src .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.src a{font-size:13.5px;text-decoration:none;color:var(--accent);background:var(--card);
+  border:1px solid var(--line);border-radius:8px;padding:9px 12px;line-height:1.35}
+.src a:hover{border-color:var(--accent)}
+.src a::after{content:" ↗";font-size:10px;opacity:.6}
+.src a.en::before{content:"EN ";font-size:10px;opacity:.65;letter-spacing:.05em}
+
+/* ---- fixed bottom action bar ---- */
+#bar{position:fixed;left:0;right:0;bottom:0;z-index:50;
+  display:flex;gap:8px;justify-content:center;
+  padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));
+  background:var(--card);border-top:1px solid var(--line);
+  box-shadow:0 -2px 14px rgba(0,0,0,.10)}
+#bar a{flex:1 1 0;min-width:0;max-width:300px;
+  display:flex;flex-direction:column;justify-content:center;
+  align-items:center;gap:1px;min-height:52px;padding:6px 8px;border-radius:10px;
+  text-decoration:none;font-weight:700;font-size:15px;line-height:1.15;text-align:center;
+  border:1px solid transparent;-webkit-tap-highlight-color:transparent}
+#bar .k{font-size:11px;font-weight:600;opacity:.85;text-transform:uppercase;letter-spacing:.05em;
+  max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bar .call{background:var(--red);color:#fff}
+#bar .call .k{color:#fff}
+#bar .map{background:var(--card);color:var(--fg);border-color:var(--line)}
+#bar .map .k{color:var(--muted)}
+@media (prefers-color-scheme: dark){ #bar .call{color:#2a0f0c} #bar .call .k{color:#2a0f0c} }
+@media (max-width:380px){ #bar a{font-size:14px} }
+
+@media print{
+  .tools,#bar{display:none} body{background:#fff;color:#000;font-size:11pt}
+  .wrap{padding-bottom:0}
+  .box{break-inside:avoid} section{break-inside:auto} h2{break-after:avoid}
+  .src a{color:#000;border:0;padding:0;background:none}
+  .src a::after{content:" (" attr(href) ")";font-size:8pt;word-break:break-all}
+}
+@media (max-width:600px){
+  .wrap{padding-left:14px;padding-right:14px}
+  header{padding-top:24px}
+  h1{font-size:24px} h2{font-size:18px}
+  .box{padding:12px 14px} ul{padding-left:19px}
+  table{min-width:340px} th,td{padding:8px 10px}
+  /* nav becomes one horizontally scrolling row so the sticky bar stays short */
+  nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
+      scrollbar-width:none;padding-bottom:2px}
+  nav::-webkit-scrollbar{display:none}
+  nav a{flex:0 0 auto;white-space:nowrap}
+  section{scroll-margin-top:140px}
+  .src a{font-size:13px;padding:9px 11px}
+}
+</style>
+<style>
+.crumb{display:inline-block;margin:0 0 10px;padding:8px 12px;font-size:14px;font-weight:650;
+  text-decoration:none;color:var(--accent);border:1px solid var(--line);border-radius:8px;
+  background:var(--card)}
+.lead{font-size:17px;color:var(--muted);margin:0 0 8px}
+.detail h2{font-size:19px}
+.back{margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
+.back a{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:10px;
+  text-decoration:none;font-weight:650;background:var(--card)}
+</style>
+</head>
+<body>
+<div class="wrap detail">
+<header>
+  <a class="crumb" href="../index.html">← Bản tra nhanh</a>
+  <h1>Nằm sấp (tummy time)</h1>
+  <p class="lead">Ngủ thì ngửa, thức thì sấp. Hai câu đó không mâu thuẫn — chúng ở hai trạng thái khác nhau.</p>
+</header>
+<main>
+<h2>Vì sao phải làm</h2>
+<p>Từ đầu thập niên 1990, khi khuyến cáo "đặt bé nằm ngửa khi ngủ" được phổ biến, số ca đột tử sơ sinh giảm mạnh. Cùng lúc đó, số ca <b>bẹp đầu do tư thế</b> tăng lên — bé nằm ngửa 14–17 giờ mỗi ngày, xương sọ còn mềm, tì lâu vào một điểm thì méo.</p>
+<p>Nằm sấp lúc thức là đối trọng. Nó không thay thế việc ngủ ngửa và không mâu thuẫn với nó: <b>ngủ thì ngửa, thức có người trông thì sấp.</b></p>
+
+<h2>Liều lượng</h2>
+<div class="box amber">
+<p class="t">Theo Viện Hàn lâm Nhi khoa Hoa Kỳ (AAP)</p>
+<ul>
+<li><b>Bắt đầu từ ngày bé về nhà.</b> Không chờ rụng rốn, không chờ cứng cổ.</li>
+<li><b>2–3 lần mỗi ngày, mỗi lần 3–5 phút</b> trong những tuần đầu.</li>
+<li>Tăng dần tới <b>15–30 phút mỗi ngày lúc bé 7 tuần</b>, cộng dồn cả ngày, không phải một lần liên tục.</li>
+<li>Tới 6 tháng, mục tiêu khoảng <b>60 phút mỗi ngày</b>, vẫn chia nhiều lần. <span class="tag">thin</span></li>
+</ul>
+</div>
+<p>Ngắn và nhiều lần thắng dài và ít lần. Sức bé sơ sinh chỉ chịu được vài phút. Ép lâu thì lần sau bé khóc ngay khi vừa úp xuống.</p>
+<p><b>Làm lúc nào:</b> bé thức, tỉnh táo, trước cữ bú hoặc lâu sau cữ bú. Vừa bú no mà úp xuống thì trớ.</p>
+
+<h2>Cách làm, từ dễ tới khó</h2>
+<ul>
+<li><b>Trên ngực người lớn.</b> Người lớn nửa nằm nửa ngồi, bé úp trên ngực, mặt bé nghiêng một bên. Đây là cách dễ nhất trong hai tuần đầu và <b>vẫn tính là nằm sấp</b>. Bé chịu lâu hơn vì nghe được nhịp tim và ngửi thấy hơi mẹ.</li>
+<li><b>Vắt ngang đùi.</b> Bụng bé tì lên đùi người lớn đang ngồi, một tay đỡ, tay kia xoa lưng.</li>
+<li><b>Bế dọc cẳng tay.</b> Bé úp dọc theo cẳng tay, đầu cao hơn thân một chút.</li>
+<li><b>Trên mặt phẳng cứng.</b> Thảm chơi hoặc chăn mỏng trải trên sàn. Cuộn một khăn nhỏ kê dưới ngực và hai nách để bé chống tay dễ hơn.</li>
+</ul>
+<p>Nằm xuống ngang tầm mắt bé mà nói chuyện, hoặc đặt gương. Bé cần một lý do để ngóc đầu lên.</p>
+
+<h2>Nó xây cái gì</h2>
+<p>Cơ cổ, vai, lưng và bụng — nền của lật, ngồi, bò, và của động tác chống tay đẩy người lên. Nó cũng buộc bé tập nhìn xa và đưa mắt theo vật; nằm ngửa suốt thì bé chỉ nhìn trần nhà.</p>
+<p>Chữ "cứng cổ" trong tờ tra nhanh là <b>mục tiêu</b>, nghĩa là làm cổ khoẻ lên — không phải tên một bệnh.</p>
+
+<h2>Bé khóc thì sao</h2>
+<p>Gần như bé nào cũng phản đối lúc đầu. Đây là tư thế tốn sức, không phải tư thế đau. Rút ngắn mỗi lần xuống 1–2 phút và tăng số lần, đổi sang kiểu úp trên ngực, hoặc dời sang lúc bé vừa ngủ dậy và đang vui.</p>
+<p>Bé phản đối không phải lý do để bỏ. Bỏ hẳn mới là vấn đề.</p>
+
+<h2>Khi nào đi khám</h2>
+<div class="box red">
+<ul>
+<li>Đầu bé <b>luôn quay về một bên</b>; quay sang bên kia thì bé kháng lại hoặc khóc. Đây là dấu hiệu <b>vẹo cổ</b> (torticollis), thường đi kèm bẹp đầu một bên. Cần bác sĩ đánh giá và tập vật lý trị liệu — càng sớm càng nhanh.</li>
+<li>Đầu bẹp rõ ở một phía và không cải thiện sau 2 tháng.</li>
+<li>Sau 3–4 tháng bé vẫn không nhấc nổi đầu khi nằm sấp.</li>
+</ul>
+</div>
+
+<h2>Ba điều cấm</h2>
+<div class="box red">
+<ul>
+<li><b>Không</b> để bé một mình khi đang nằm sấp, dù chỉ một phút.</li>
+<li><b>Không</b> cho nằm sấp trên mặt mềm — nệm lún, gối, chăn dày, sofa.</li>
+<li><b>Không</b> để bé ngủ ở tư thế sấp. Thấy bé díu mắt thì lật ngửa ngay và đặt vào nôi.</li>
+</ul>
+</div>
+<p>Bé sơ sinh chưa tự nhấc đầu khỏi mặt phẳng để thở. "Có người trông" nghĩa là ngồi cạnh và nhìn bé, không phải đặt bé xuống rồi đi nấu cơm.</p>
+
+<p class="src"><span class="lbl">Nguồn</span>
+<a class="en" href="https://www.healthychildren.org/English/ages-stages/baby/sleep/Pages/back-to-sleep-tummy-to-play.aspx" target="_blank" rel="noopener">AAP / HealthyChildren — Back to Sleep, Tummy to Play</a>
+<a href="https://aih.com.vn/tin-tuc/tummy-time-nhung-dieu-bo-me-nen-biet" target="_blank" rel="noopener">BV Quốc tế Mỹ AIH — tummy time</a>
+<a href="https://membership.phuongchau.com/thoi-gian-nam-sap-cho-be-tummy-time/" target="_blank" rel="noopener">BV Quốc tế Phương Châu — thời gian nằm sấp</a>
+<a href="https://vienyhocungdung.vn/tummy-time-huong-dan-cho-be-nam-sap-dung-cach-20210531151458093.htm" target="_blank" rel="noopener">Viện Y học ứng dụng — hướng dẫn nằm sấp</a>
+<a class="en" href="https://pathways.org/topics-of-development/tummy-time" target="_blank" rel="noopener">Pathways.org — Tummy Time</a></p>
+
+<p class="note">Con số 3–5 phút, 2–3 lần/ngày và mốc 15–30 phút lúc 7 tuần lấy nguyên văn từ AAP. Mốc 60 phút lúc 6 tháng có ở Pathways.org dẫn AAP, nhưng em chưa tìm thấy nó trong văn bản AAP gốc — nên đánh dấu <span class="tag">thin</span>.</p>
+</main>
+<p class="back"><a href="../index.html">← Về bản tra nhanh</a></p>
+</div>
+<div id="bar">
+  <a class="call" href="tel:115"><span class="k">Cấp cứu</span>Gọi 115</a>
+  <a class="map" href="tel:02871026789"><span class="k">Tâm Anh · Phổ Quang</span>028 7102 6789</a>
+</div>
+</body>
+</html>
